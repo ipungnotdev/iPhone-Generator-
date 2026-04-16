@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>iPhone Quote Generator</title>
+    
+    <meta name="description" content="Buat quote keren dengan tampilan iPhone">
+
+<!-- OPEN GRAPH -->
+<meta property="og:title" content="Núkk Shop">
+<meta property="og:description" content="Buat quote keren dengan tampilan iPhone">
+<meta property="og:image" content="https://img2.pixhost.to/images/7113/714145555_sifah.jpg">
+<meta property="og:image:secure_url" content="https://img2.pixhost.to/images/7113/714145555_sifah.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- TWITTER -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ïṗüṅġṠëḳṡẍ7">
+<meta name="twitter:description" content="Buat quote keren dengan tampilan iPhone">
+<meta name="twitter:image" content="https://img2.pixhost.to/images/7113/714145555_sifah.jpg">
+
+<!-- FONT -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+<link rel="icon" href="https://img2.pixhost.to/images/7113/714145555_sifah.jpg">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+.ads-overlay {
+    transition: opacity 0.4s ease;
+}
+
+.ads-box {
+    transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.toast.success {
+    color: dodgerblue; /* biru terang */
+}
+
+.toast.error {
+    color: #f87171; /* merah soft */
+}
+
+.toast.info {
+    color: dodgerblue; /* biru cyan */
+}
+
+.toast.success {
+    border-left-color: #3b82f6;
+}
+
+.toast.error {
+    border-left-color: #ef4444;
+}
+
+.toast.info {
+    border-left-color: #38bdf8;
+}
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #0d1b2a 50%, #1b263b 100%);
+            min-height: 100vh;
+            padding: 24px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .header h1 i {
+            background: none;
+            -webkit-text-fill-color: #3b82f6;
+        }
+
+        .header p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        /* Cards */
+        .card {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 24px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-header {
+            padding: 20px 24px;
+            background: rgba(59, 130, 246, 0.1);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .card-header h2 {
+            color: #f1f5f9;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card-header h2 i {
+            color: #3b82f6;
+        }
+
+        .card-body {
+            padding: 24px;
+        }
+
+        /* Form Group */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group label i {
+            margin-right: 8px;
+            color: #3b82f6;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 12px 16px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            color: #f1f5f9;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Range Slider */
+        .range-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            padding: 0;
+            height: 5px;
+            -webkit-appearance: none;
+            background: #334155;
+            border-radius: 10px;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            background: #3b82f6;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .range-value {
+            min-width: 45px;
+            text-align: center;
+            background: rgba(59, 130, 246, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            color: #60a5fa;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* Signal Bars */
+        .signal-bars {
+            display: flex;
+            gap: 6px;
+            align-items: flex-end;
+            margin-top: 10px;
+        }
+
+        .signal-bar {
+            width: 6px;
+            background: #334155;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-download {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            border: none;
+            border-radius: 12px;
+            color: white;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.2s;
+            margin-top: 16px;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px #2563eb(16, 185, 129, 0.4);
+        }
+
+        .btn-download:active {
+            transform: translateY(0);
+        }
+
+        .btn-download.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-download.disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Result Area */
+        .result-area {
+            text-align: center;
+        }
+
+        .result-image {
+            background: #0f172a;
+            border-radius: 28px;
+            padding: 12px;
+            border: 1px solid #334155;
+        }
+
+        .result-image img {
+            width: 100%;
+            max-width: 360px;
+            border-radius: 20px;
+            display: block;
+            margin: 0 auto;
+        }
+
+       .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #60a5fa; /* biru terang */
+}
+
+.empty-state i {
+    font-size: 56px;
+    margin-bottom: 16px;
+    color: #3b82f6;
+    opacity: 0.8;
+}
+
+.empty-state p {
+    font-size: 0.95rem;
+    color: #93c5fd;
+}
+
+.empty-state small {
+    color: #60a5fa;
+    opacity: 0.7;
+}
+
+        /* Loading */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 3px solid rgba(59, 130, 246, 0.2);
+            border-top-color: #3b82f6;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            color: #94a3b8;
+            font-size: 0.85rem;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            padding: 12px 20px;
+            background: #1e293b;
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            gap: 12px;
+            z-index: 1001;
+            animation: slideIn 0.3s ease;
+            border-left: 3px solid #3b82f6;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .toast.show {
+            display: flex;
+        }
+
+        .toast.error {
+            border-left-color: #334155;
+        }
+
+        .toast.success {
+            border-left-color: #334155;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #475569;
+            font-size: 0.7rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            body {
+                padding: 16px;
+            }
+        }
+        
+        /* OVERLAY */
+/* OVERLAY */
+.ads-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+/* SAAT MUNCUL */
+.ads-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* BOX */
+.ads-box {
+    position: relative;
+    width: 90%;
+    max-width: 360px;
+    background: rgba(15, 23, 42, 0.95);
+    border-radius: 22px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(59, 130, 246, 0.25);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+    
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+    transition: all 0.35s ease;
+}
+
+/* BOX SAAT MUNCUL */
+.ads-overlay.show .ads-box {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+}
+
+/* SAAT TUTUP */
+.ads-overlay.hide {
+    opacity: 0;
+}
+
+.ads-overlay.hide .ads-box {
+    transform: scale(0.8) translateY(20px);
+    opacity: 0;
+}
+/* BOX */
+.ads-box {
+    position: relative;
+    width: 90%;
+    max-width: 360px;
+    background: rgba(15, 23, 42, 0.95);
+    border-radius: 22px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid rgba(59,130,246,0.25);
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+    animation: popupScale 0.35s ease;
+}
+
+/* IMAGE */
+.ads-image {
+    width: 100%;
+    border-radius: 14px;
+    margin-bottom: 15px;
+}
+
+/* TEXT */
+.ads-box h2 {
+    color: #60a5fa;
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+}
+
+.ads-box p {
+    color: #94a3b8;
+    font-size: 0.85rem;
+    margin-bottom: 18px;
+}
+
+/* BUTTON */
+.ads-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 13px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.ads-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(59,130,246,0.5);
+}
+
+.ads-btn:active {
+    transform: scale(0.96);
+}
+
+/* ICON */
+.ads-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.ads-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+/* CLOSE */
+.ads-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(30,41,59,0.8);
+    color: #94a3b8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.ads-close:hover {
+    background: dodgerblue;
+    color: white;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+@keyframes popupScale {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+        
+    </style>
+</head>
+
+<!-- POPUP IKLAN -->
+<div class="ads-overlay" id="adsOverlay">
+    <div class="ads-box">
+
+        <!-- Close -->
+        <button class="ads-close" id="closeAds">
+            <svg viewBox="0 0 24 24">
+                <path fill="currentColor" d="M18.3 5.71a1 1 0 0 0-1.41 0L12 10.59 7.11 5.7A1 1 0 0 0 5.7 7.11L10.59 12l-4.9 4.89a1 1 0 1 0 1.42 1.41L12 13.41l4.89 4.9a1 1 0 0 0 1.41-1.42L13.41 12l4.9-4.89a1 1 0 0 0-.01-1.4z"/>
+            </svg>
+        </button>
+
+        <!-- Image -->
+        <img src="https://img2.pixhost.to/images/7113/714149440_sifah.jpg" class="ads-image">
+
+        <!-- Text -->
+        <h2>Join Channel WhatsApp</h2>
+        <p>Dapatkan info terbaru setiap hari</p>
+
+        <!-- Button -->
+        <a href="https://whatsapp.com/channel/0029Vb6hL9pGufJ38JTojQ3e" target="_blank" class="ads-btn">
+            <span class="ads-icon">
+                <svg viewBox="0 0 32 32">
+                    <path fill="#ffffff" d="M16.001 3C9.373 3 4 8.373 4 15.001c0 2.648.773 5.095 2.104 7.164L4 29l7.041-2.071a11.94 11.94 0 004.96 1.072C22.629 28 28 22.628 28 16.001 28 9.373 22.629 3 16.001 3zm0 22.693a9.683 9.683 0 01-4.928-1.354l-.354-.21-4.178 1.23 1.239-4.076-.231-.366A9.68 9.68 0 016.32 15c0-5.35 4.332-9.68 9.68-9.68 5.35 0 9.68 4.33 9.68 9.68 0 5.349-4.33 9.693-9.68 9.693zm5.317-7.283c-.29-.145-1.717-.851-1.982-.948-.266-.099-.459-.145-.65.145-.19.29-.748.947-.917 1.139-.17.192-.338.217-.628.073-.29-.145-1.226-.451-2.335-1.437-.862-.769-1.442-1.719-1.612-2.009-.17-.289-.018-.445.128-.589.132-.132.29-.338.436-.507.145-.17.193-.289.29-.482.099-.192.049-.362-.025-.507-.073-.145-.65-1.566-.891-2.145-.234-.561-.471-.485-.65-.495l-.554-.01c-.192 0-.507.073-.774.362-.266.29-1.016.992-1.016 2.414s1.04 2.8 1.183 2.992c.145.193 2.044 3.12 4.949 4.378.692.298 1.231.476 1.65.61.693.22 1.323.189 1.821.115.556-.083 1.717-.7 1.96-1.377.242-.677.242-1.257.17-1.377-.073-.119-.266-.19-.556-.334z"/>
+                </svg>
+            </span>
+            Join Channel
+        </a>
+
+    </div>
+</div>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-mobile-alt"></i> iPhone Quote Generator</h1>
+            <p>Buat quote keren dengan tampilan iPhone</p>
+        </div>
+
+        <div class="grid">
+            <!-- Form Panel -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-sliders-h"></i> Customize Quote</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label><i class="fas fa-quote-left"></i> Pesan / Quote</label>
+                        <textarea id="messageText" placeholder="Tulis pesan kerenmu di sini..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-building"></i> Nama Operator</label>
+                        <input type="text" id="carrierName" value="Telkomsel">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-battery-full"></i> Baterai</label>
+                        <div class="range-wrapper">
+                            <i class="fas fa-battery-quarter" style="color: #ef4444; font-size: 13px;"></i>
+                            <input type="range" id="battery" min="0" max="100" value="80">
+                            <i class="fas fa-battery-full" style="color: #3b82f6; font-size: 13px;"></i>
+                        </div>
+                        <div class="range-value" id="batteryValue" style="margin-top: 8px;">80%</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-signal"></i> Sinyal</label>
+                        <div class="range-wrapper">
+                            <input type="range" id="signal" min="1" max="4" value="3" step="1">
+                        </div>
+                        <div class="signal-bars" id="signalBars">
+                            <div class="signal-bar" style="height: 8px;"></div>
+                            <div class="signal-bar" style="height: 12px;"></div>
+                            <div class="signal-bar" style="height: 16px;"></div>
+                            <div class="signal-bar" style="height: 20px;"></div>
+                        </div>
+                        <div class="range-value" id="signalValue" style="margin-top: 8px;">3/4</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Jam (WIB)</label>
+                        <input type="text" id="timeInput" placeholder="13:37">
+                    </div>
+
+                    <button class="btn-primary" id="generateBtn">
+                        <i class="fas fa-magic"></i> Generate Quote
+                    </button>
+                </div>
+            </div>
+
+            <!-- Result Panel -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-image"></i> Hasil Gambar</h2>
+                </div>
+                <div class="card-body result-area">
+                    <div id="resultContainer" class="empty-state">
+                        <i class="fas fa-mobile-alt"></i>
+                        <p>Klik Generate untuk membuat gambar</p>
+                        <small style="color: #475569;">Hasil akan muncul di sini</small>
+                    </div>
+                    <button class="btn-download" id="downloadBtn" style="display:none;">
+                        <i class="fas fa-download"></i> Download Gambar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© Powered by <span style="color: #3b82f6;">ïṗüṅġṠëḳṡẍ7 </span> | iPhone Quote Generator</p>
+        </div>
+    </div>
+
+    <!-- Loading -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">Sedang membuat gambar,
+        tunggu sebentar ya...</div>
+    </div>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <i class="fas" id="toastIcon"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script>
+        // ==================== KONFIGURASI ====================
+        // GANTI dengan URL worker Cloudflare Anda!
+        const WORKER_URL = 'https://quoteiphonenukk.nuxoffc.workers.dev';
+        
+        // ==================== DOM ELEMENTS ====================
+        const messageText = document.getElementById('messageText');
+        const carrierName = document.getElementById('carrierName');
+        const batterySlider = document.getElementById('battery');
+        const batteryValue = document.getElementById('batteryValue');
+        const signalSlider = document.getElementById('signal');
+        const signalValue = document.getElementById('signalValue');
+        const signalBars = document.getElementById('signalBars');
+        const timeInput = document.getElementById('timeInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const resultContainer = document.getElementById('resultContainer');
+        const toast = document.getElementById('toast');
+
+        // Variabel global untuk menyimpan blob gambar
+        let currentImageBlob = null;
+        let currentImageUrl = null;
+
+        // ==================== HELPER FUNCTIONS ====================
+        
+        function showToast(message, type = 'info') {
+            const icon = document.getElementById('toastIcon');
+            const msg = document.getElementById('toastMessage');
+            
+            const icons = {
+                error: 'fa-exclamation-circle',
+                success: 'fa-check-circle',
+                info: 'fa-info-circle'
+            };
+            
+            icon.className = `fas ${icons[type] || icons.info}`;
+            msg.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 4000);
+        }
+
+        function getCurrentWIBTime() {
+            const now = new Date();
+            const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+            const wib = new Date(utc + (7 * 3600000));
+            const hours = String(wib.getHours()).padStart(2, '0');
+            const minutes = String(wib.getMinutes()).padStart(2, '0');
+            return `${hours}:${minutes}`;
+        }
+
+        function updateSignalBars() {
+            const val = parseInt(signalSlider.value);
+            signalValue.textContent = `${val}/4`;
+            const bars = signalBars.querySelectorAll('.signal-bar');
+            bars.forEach((bar, index) => {
+                if (index < val) {
+                    bar.style.background = '#3b82f6';
+                } else {
+                    bar.style.background = '#334155';
+                }
+            });
+        }
+
+        function updateBattery() {
+            batteryValue.textContent = `${batterySlider.value}%`;
+        }
+
+        function isValidTime(time) {
+            return /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/.test(time);
+        }
+
+        // ==================== DOWNLOAD GAMBAR ====================
+        function downloadImage() {
+            if (!currentImageBlob) {
+                showToast('Tidak ada gambar untuk di-download', 'error');
+                return;
+            }
+            
+            // Buat link download
+            const url = URL.createObjectURL(currentImageBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `iphone_quote_${Date.now()}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Revoke URL setelah download
+            setTimeout(() => {
+                URL.revokeObjectURL(url);
+            }, 100);
+            
+            showToast('Gambar di download', 'success');
+        }
+
+        // ==================== GENERATE GAMBAR ====================
+        async function generateImage() {
+            let pesan = messageText.value.trim();
+            if (!pesan) {
+                showToast('Masukkan pesan terlebih dahulu!', 'error');
+                return;
+            }
+
+            let carrier = carrierName.value.trim() || 'TELKOMSEL';
+            let baterai = parseInt(batterySlider.value);
+            let sinyal = parseInt(signalSlider.value);
+            let jam = timeInput.value.trim();
+
+            if (isNaN(baterai)) baterai = 80;
+            if (isNaN(sinyal)) sinyal = 3;
+            if (baterai < 0) baterai = 0;
+            if (baterai > 100) baterai = 100;
+            if (sinyal < 1) sinyal = 1;
+            if (sinyal > 4) sinyal = 4;
+
+            if (!jam) {
+                jam = getCurrentWIBTime();
+                timeInput.value = jam;
+            }
+
+            if (!isValidTime(jam)) {
+                showToast('Format jam salah! Gunakan HH:MM (contoh: 13:37)', 'error');
+                return;
+            }
+
+            const apiUrl = `${WORKER_URL}/api/iqc?messageText=${encodeURIComponent(pesan)}&carrierName=${encodeURIComponent(carrier)}&batteryPercentage=${baterai}&signalStrength=${sinyal}&time=${encodeURIComponent(jam)}`;
+            
+            // Nonaktifkan tombol download selama generate
+            downloadBtn.style.display = 'none';
+            loadingOverlay.classList.add('active');
+
+            try {
+                const response = await fetch(apiUrl);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}`);
+                }
+
+                const contentType = response.headers.get('Content-Type');
+                if (!contentType || !contentType.startsWith('image/')) {
+                    throw new Error('Response bukan gambar');
+                }
+
+                // Simpan blob gambar
+                currentImageBlob = await response.blob();
+                
+                // Buat URL untuk preview
+                if (currentImageUrl) {
+                    URL.revokeObjectURL(currentImageUrl);
+                }
+                currentImageUrl = URL.createObjectURL(currentImageBlob);
+
+                // Tampilkan preview
+                resultContainer.innerHTML = `
+                    <div class="result-image">
+                        <img src="${currentImageUrl}" alt="iPhone Quote" style="width:100%; max-width:360px; border-radius:20px;">
+                    </div>
+                `;
+
+downloadBtn.style.display = 'flex';
+                
+                showToast(`Gambar berhasil dibuat`, 'success');
+
+            } catch (error) {
+                console.error('Error:', error);
+                showToast(`Gagal membuat gambar: ${error.message}`, 'error');
+                resultContainer.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Gagal membuat gambar</p>
+                        <small style="color: #475569;">${error.message}</small>
+                    </div>
+                `;
+                currentImageBlob = null;
+                downloadBtn.style.display = 'none';
+            } finally {
+                loadingOverlay.classList.remove('active');
+            }
+        }
+
+        generateBtn.addEventListener('click', generateImage);
+        downloadBtn.addEventListener('click', downloadImage);
+        batterySlider.addEventListener('input', updateBattery);
+        signalSlider.addEventListener('input', updateSignalBars);
+        
+        messageText.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                generateImage();
+            }
+        });
+
+        function init() {
+
+            messageText.value = 'This Is ïṗüṅġṠëḳṡẍ7 ';
+            batterySlider.value = 80;
+            signalSlider.value = 3;
+            timeInput.value = getCurrentWIBTime();
+            
+            updateBattery();
+            updateSignalBars();
+            
+            fetch(`${WORKER_URL}/health`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        console.log('Worker connected');
+                    }
+                })
+                .catch(() => {
+                    showToast('Periksa URL worker', 'info');
+                });
+        }
+
+        init();
+
+        setInterval(() => {
+            if (!timeInput.value.trim()) {
+                timeInput.value = getCurrentWIBTime();
+            }
+        }, 60000);
+        
+const adsOverlay = document.getElementById('adsOverlay');
+const closeAds = document.getElementById('closeAds');
+
+// munculin smooth saat load
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        adsOverlay.classList.add('show');
+    }, 50); // kecil aja biar smooth
+});
+
+// tutup smooth
+closeAds.addEventListener('click', () => {
+    adsOverlay.classList.add('hide');
+
+    setTimeout(() => {
+        adsOverlay.classList.remove('show');
+        adsOverlay.style.display = 'none';
+    }, 350);
+});
+        
+    </script>
+</body>
+</html>
